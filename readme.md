@@ -1,70 +1,124 @@
+# 📦 Data Warehouse Demo Project
 
-# Data Warehouse
+This is a **demo Data Warehouse project** designed for learning and practicing concepts like Oracle Database, SQL*Loader, ETL, CRM/ERP datasets, and containerized deployment with Docker.
 
-This the demo project dataware house for learning.
+---
 
+## 🛠 Skills Used
+- Docker / Docker Compose  
+- Oracle Database (XE)  
+- SQL*Loader  
+- Bash scripting  
+- DBeaver / SQL Developer  
+- Data Warehouse Concepts (CRM + ERP datasets)
 
+---
 
-## 🛠 Skills
-Docker, Oracle, SQLDeveloper...
-## Installation
+## 🚀 Installation
 
-Using docker desktop for run this project.
-## Deployment
+Use **Docker Desktop** to run this project locally.
 
-To deploy this project run
-
+### Start the Oracle database:
 ```bash
-  docker compose -f docker-compose.yml up
+docker compose -f docker-compose.yml up
 ```
 
+This will download the Oracle XE image and start the database.
 
-## Running Tests
+---
 
-To run tests, Start your first oracle database, run the following command
+## 🗄️ Database Setup (CRM & ERP)
 
-Find your container:
+After starting the container, initialize the database using:
+
 ```bash
-  docker ps -a --format "{{.Names}}\t{{.ID}}\t{{.Status}}" | sort | column -t
+bash scripts/setup_crm_erp_database.sh
 ```
 
-Start Excecute command:
-```bash
-  docker exec -it oracle-xe bash
+This script will automatically:
+- Copy SQL scripts and datasets into the Oracle container
+- Wait for Oracle to finish initializing
+- Create tablespaces & users (CRM + ERP)
+- Create all CRM tables
+- Create all ERP tables
+- Load sample datasets using SQL*Loader
+
+Everything will be initialized in one click.
+
+---
+
+## 📂 Project Structure
+
+```
+project-root/
+│
+├── docker-compose.yml
+├── README.md
+│
+├── sql/
+│   ├── 01_users_tablespaces.sql
+│   ├── 02_create_crm_tables.sql
+│   ├── 03_create_erp_tables.sql
+│
+├── sql_loader/
+│   ├── crm/
+│   │   ├── cust_info.ctl
+│   │   ├── prd_info.ctl
+│   │   └── sales_details.ctl
+│   ├── erp/
+│       ├── CUST_AZ12.ctl
+│       ├── LOC_A101.ctl
+│       └── PX_CAT_G1V2.ctl
+│
+├── datasets/
+│   ├── crm/
+│   ├── erp/
+│
+└── scripts/
+    └── setup_crm_erp_database.sh
 ```
 
-Start Login to DBA account:
-```bash
-  sqlplus system/password@//localhost:1521/XEPDB1
+---
+
+## 🔍 Connecting With DBeaver / SQL Developer
+
+### CRM User
+```
+Username: usr_crm
+Password: admin
+Service : XEPDB1
+Port    : 1521
+Host    : localhost
 ```
 
-Craate user:
-```bash
-  CREATE USER usr IDENTIFIED BY "password";
-  GRANT CREATE SESSION TO usr;
-  GRANT CREATE TABLE TO usr;
-  ALTER USER usr QUOTA 100M ON USERS;
+### ERP User
+```
+Username: usr_erp
+Password: admin
+Service : XEPDB1
+Port    : 1521
+Host    : localhost
 ```
 
-Craate tablespace:
-```bash
-  CREATE TABLESPACE tbs
-  DATAFILE '/opt/oracle/oradata/XE/XEPDB1/tbs.dbf' SIZE 100M
-  AUTOEXTEND ON NEXT 10M MAXSIZE UNLIMITED;
-
-  ALTER USER usr DEFAULT TABLESPACE tbs;
-  ALTER USER usr QUOTA 100M ON tbs;
+### System Admin
+```
+Username: system
+Password: admin
 ```
 
-Craate table:
-```bash
-  docker exec -it oracle-xe bash
-  sqlplus usr/password@//localhost:1521/XEPDB1
+---
 
-  CREATE TABLE tbl (
-    id	VARCHAR2(20) PRIMARY KEY,
-    title	VARCHAR2(100)
-    create_date  DATE,
-  );
+## 🧪 Test Loaded Data
+
+Example:
+```sql
+SELECT * FROM CRM_CUSTOMERS;
+SELECT * FROM ERP_PRODUCTS;
 ```
 
+---
+
+## 🙌 Thanks
+This project is for learning and practicing Data Warehouse, ETL, and Oracle database automation.
+
+Enjoy learning, my friend!
