@@ -35,23 +35,15 @@ create table silver_usr.crm_sales_details(
 
 );
 
-create table silver_usr.erp_loc_a101(
-    cid NVARCHAR2(50),
-    cntry NVARCHAR2(50),
-    load_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-create table silver_usr.erp_cust_az12(
+create table silver_usr.erp_cust_info(
     cid NVARCHAR2(50),
     bdate date,
     gen  NVARCHAR2(50),
     load_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table silver_usr.erp_px_cat_g1v2(
-    id NVARCHAR2(50),
-    cat NVARCHAR2(50),
-    subcat NVARCHAR2(50),
-    maintenance NVARCHAR2(50),
+create table silver_usr.erp_location(
+    cid NVARCHAR2(50),
+    cntry NVARCHAR2(50),
     load_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

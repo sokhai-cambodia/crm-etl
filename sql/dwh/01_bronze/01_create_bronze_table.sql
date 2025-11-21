@@ -39,9 +39,9 @@ CREATE TABLE crm_sale_detail (
     sls_order_dt DATE,
     sls_ship_dt  DATE,
     sls_due_dt   DATE,
-    sls_sales    VARCHAR2(200),
-    sls_quantity VARCHAR2(200),
-    sls_price    VARCHAR2(200),
+    sls_sales    NUMBER,
+    sls_quantity NUMBER,
+    sls_price    NUMBER,
     load_date        TIMESTAMP DEFAULT SYSTIMESTAMP,
     source_file      VARCHAR2(255)
 );

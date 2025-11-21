@@ -19,7 +19,7 @@ select
         else 'N/A'
     end as cst_gndr,
     cst_create_date
-from bronze_usr.vw_crm_cust_info 
+from bronze_usr.vw_crm_cust_info;
 commit;
 
 select * from silver_usr.crm_cust_info;
