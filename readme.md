@@ -55,11 +55,18 @@ project-root/
 ├── docker-compose.yml
 ├── README.md
 │
-├── sql/
-│   ├── 01_users_tablespaces.sql
-│   ├── 02_create_crm_tables.sql
-│   ├── 03_create_erp_tables.sql
-│
+├── sql/ # SQL scripts for database setup and ETL
+│ ├── dwh/ # Data warehouse scripts
+│ │ ├── 01_bronze/ # Bronze layer: raw data tables and views
+│ │ ├── 02_silver/ # Silver layer: cleaned and integrated tables
+│ │ ├── 03_gold/ # Gold layer: dimensional models (fact & dim tables)
+│ │ └── setup_dwh_layers.sql # Script to setup all DWH layers
+│ ├── 01_users_tablespaces.sql
+│ ├── 02_create_crm_tables.sql
+│ ├── 03_create_erp_tables.sql
+│ ├── load_csv.sql
+│ ├── load_data_layer.sql
+│ └── snowflake.sql
 ├── sql_loader/
 │   ├── crm/
 │   │   ├── cust_info.ctl
@@ -76,8 +83,8 @@ project-root/
 │
 └── scripts/
     └── setup_crm_erp_database.sh
+    └── setup_dwh.sh
 ```
-
 ---
 
 ## 🔍 Connecting With DBeaver / SQL Developer
@@ -117,6 +124,20 @@ SELECT * FROM ERP_PRODUCTS;
 ```
 
 ---
+
+## 🗄️ ETL Database Setup (CRM & ERP)
+
+After starting the container, initialize the database using:
+
+```bash
+bash scripts/setup_dwh.sh
+```
+
+Then run scripts for each layer:
+- setup_dwh_layers.sql
+- Bronze layer (01_bronze/*): create raw tables and views
+- Silver layer (02_silver/*): load and clean CRM & ERP data
+- Gold layer (03_gold/*): create dimensional tables (fact & dimension)
 
 ## 🙌 Thanks
 This project is for learning and practicing Data Warehouse, ETL, and Oracle database automation.
