@@ -17,7 +17,7 @@ GRANT CREATE SESSION, CREATE TABLE, CREATE SEQUENCE TO dwh_role;
 -- ===================================================
 -- Create tablespace for Bronze layer
 CREATE TABLESPACE tbs_bronze_01
-DATAFILE 'tbs_bronze_01.dbf' SIZE 1M
+DATAFILE '/opt/oracle/oradata/XE/tbs_bronze_01.dbf' SIZE 1M
 AUTOEXTEND ON NEXT 1M MAXSIZE 200M;
 
 -- Create user for Bronze layer
@@ -33,7 +33,7 @@ GRANT dwh_role TO bronze_usr;
 -- ===================================================
 -- Create tablespace for Silver layer
 CREATE TABLESPACE tbs_silver_01
-DATAFILE 'tbs_silver_01.dbf' SIZE 1M
+DATAFILE '/opt/oracle/oradata/XE/tbs_silver_01.dbf' SIZE 1M
 AUTOEXTEND ON NEXT 1M MAXSIZE 200M;
 
 -- Create user for Silver layer
@@ -49,7 +49,7 @@ GRANT dwh_role TO silver_usr;
 -- ===================================================
 -- Create tablespace for Gold layer
 CREATE TABLESPACE tbs_gold_01
-DATAFILE 'tbs_gold_01.dbf' SIZE 1M
+DATAFILE '/opt/oracle/oradata/XE/tbs_gold_01.dbf' SIZE 1M
 AUTOEXTEND ON NEXT 1M MAXSIZE 200M;
 
 -- Create user for Gold layer
