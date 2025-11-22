@@ -47,3 +47,12 @@ create table silver_usr.erp_location(
     cntry NVARCHAR2(50),
     load_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+CREATE TABLE silver_usr.erp_category (
+    id        VARCHAR2(200),
+    cat       VARCHAR2(200),
+    subcat    VARCHAR2(200),
+    maintenance VARCHAR2(50),
+    load_date      TIMESTAMP DEFAULT SYSTIMESTAMP
+);
