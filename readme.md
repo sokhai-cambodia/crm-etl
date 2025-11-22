@@ -55,6 +55,7 @@ project-root/
 ├── docker-compose.yml
 ├── README.md
 │
+├── etl_jobs/ # This module provides Node.js scripts to automate ETL (Extract, Transform, Load) jobs
 ├── sql/ # SQL scripts for database setup and ETL
 │ ├── dwh/ # Data warehouse scripts
 │ │ ├── 01_bronze/ # Bronze layer: raw data tables and views
