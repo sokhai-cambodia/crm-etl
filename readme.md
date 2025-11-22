@@ -134,7 +134,6 @@ bash scripts/setup_dwh.sh
 ```
 
 Then run scripts for each layer:
-- setup_dwh_layers.sql
 - Bronze layer (01_bronze/*): create raw tables and views
 - Silver layer (02_silver/*): load and clean CRM & ERP data
 - Gold layer (03_gold/*): create dimensional tables (fact & dimension)
