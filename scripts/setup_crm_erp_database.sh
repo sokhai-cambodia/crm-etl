@@ -8,7 +8,7 @@ export $(grep -v '^#' ./.env | xargs)
 CONTAINER_NAME="oracle-xe"
 DB_USER="system"
 DB_PASSWORD="$ORACLE_PASSWORD"
-DB_SERVICE="localhost:$ORACLE_PORT/$ORACLE_DATABASE"
+DB_SERVICE="$ORACLE_CONNECT"
 
 CRM_USER="usr_crm"
 ERP_USER="usr_erp"
